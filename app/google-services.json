@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "529457796754",
+    "project_id": "sweetfantasy-2498e",
+    "storage_bucket": "sweetfantasy-2498e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529457796754:android:366282045ffdda1ef7384b",
+        "android_client_info": {
+          "package_name": "com.gmail.naroluen.sweetfantasy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529457796754-enb8hkmcblgjikphpt9pu86fo77k2k97.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmail.naroluen.sweetfantasy",
+            "certificate_hash": "1cab469a77dd828646962f62949a274e28095a05"
+          }
+        },
+        {
+          "client_id": "529457796754-iu2v13ucd5ssn8kphph5k4ue4mdfi38e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH-7J32AwHiXtgMbgvmt8rLQJIAZyeCew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529457796754-iu2v13ucd5ssn8kphph5k4ue4mdfi38e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
