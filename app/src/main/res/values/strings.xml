@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">SweetFantasy</string>
+
+    <string name="content_description">image</string>
+    <string name="title_login">BIENVENIDO</string>
+    <string name="et_hint_email_id">Usuario</string>
+    <string name="et_hint_password">Contraseña</string>
+    <string name="lbl_forgot_password">Recuperar contraseña</string>
+    <string name="btn_lbl_login">Iniciar Sesión</string>
+    <string name="don_t_have_an_account">Aún no tiene cuenta?</string>
+    <string name="register"><u>Registrarse</u></string>
+
 </resources>
