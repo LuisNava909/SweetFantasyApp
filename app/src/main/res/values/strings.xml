@@ -10,4 +10,21 @@
     <string name="don_t_have_an_account">Aún no tiene cuenta?</string>
     <string name="register"><u>Registrarse</u></string>
 
+    <string name="create_an_account">CREAR UNA CUENTA</string>
+    <string name="hint_last_name">Apellido</string>
+    <string name="hint_first_name">Nombre</string>
+    <string name="et_hint_confirm_password">Confirmar Contraseña</string>
+    <string name="i_agree_to_the_terms_and_condition">Acepto los <u> Términos &amp; Condiciones </u></string>
+    <string name="btn_lbl_register">Registrarse</string>
+    <string name="already_have_an_account">Ya tiene una cuenta?</string>
+    <string name="login"><u>Inicie Sesión</u></string>
+
+    <string name="err_msg_enter_first_name">Ingrese su nombre.</string>
+    <string name="err_msg_enter_last_name">Ingrese su apellido.</string>
+    <string name="err_msg_enter_email">Ingrese su correo.</string>
+    <string name="err_msg_enter_password">Ingrese su contraseña.</string>
+    <string name="err_msg_enter_confirm_password">Confirme su contraseña.</string>
+    <string name="err_msg_password_and_confirm_password_mismatch">Las contraseñas no coinciden.</string>
+    <string name="err_msg_agree_terms_and_condition">Marque la casilla de términos y condiciones.</string>
+
 </resources>
