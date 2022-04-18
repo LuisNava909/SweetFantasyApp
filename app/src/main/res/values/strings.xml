@@ -3,7 +3,7 @@
 
     <string name="content_description">image</string>
     <string name="title_login">BIENVENIDO</string>
-    <string name="et_hint_email_id">Usuario</string>
+    <string name="et_hint_email_id">Correo ID</string>
     <string name="et_hint_password">Contraseña</string>
     <string name="lbl_forgot_password">Recuperar contraseña</string>
     <string name="btn_lbl_login">Iniciar Sesión</string>
@@ -28,5 +28,11 @@
     <string name="err_msg_agree_terms_and_condition">Marque la casilla de términos y condiciones.</string>
 
     <string name="please_wait">Espere un momento&#8230;</string>
+
+    <string name="title_forgot_password">OLVIDÓ SU CONTRASEÑA?</string>
+    <string name="forgot_password_title_description">Ingrese su correo y le enviaremos un mensaje para reiniciarla</string>
+    <string name="btn_lbl_submit">Confirmar</string>
+
+    <string name="email_sent_success">\"Hemos enviado un correo para reiniciar su contraseña \"</string>
 
 </resources>
