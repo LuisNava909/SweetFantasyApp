@@ -27,4 +27,6 @@
     <string name="err_msg_password_and_confirm_password_mismatch">Las contraseñas no coinciden.</string>
     <string name="err_msg_agree_terms_and_condition">Marque la casilla de términos y condiciones.</string>
 
+    <string name="please_wait">Espere un momento&#8230;</string>
+
 </resources>

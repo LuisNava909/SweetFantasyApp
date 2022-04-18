@@ -8,6 +8,10 @@ import android.text.TextUtils
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.gmail.naroluen.sweetfantasy.R
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity() {
@@ -28,13 +32,15 @@ class RegisterActivity : BaseActivity() {
         setupActionBar()
 
         tv_login.setOnClickListener {
-            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+            /*val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
-            //finish()
+            finish()*/
+            onBackPressed()
         }
 
         btn_register.setOnClickListener{
-            validateRegisterDetails()
+            //validateRegisterDetails()
+            registerUser()
         }
     }
 
@@ -88,10 +94,44 @@ class RegisterActivity : BaseActivity() {
                 false
             }*/
             else -> {
-                showErrorSnackBar("Nueva cuenta registrada", false)
+                //showErrorSnackBar("Nueva cuenta registrada", false)
                 true
             }
         }
     }
+
+    private fun registerUser() {
+
+        if (validateRegisterDetails()) {
+
+            showProgressDialog(resources.getString(R.string.please_wait))
+
+            val email: String = et_email.text.toString().trim { it <= ' ' }
+            val password: String = et_password.text.toString().trim { it <= ' ' }
+
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(
+                    OnCompleteListener<AuthResult> { task ->
+
+                        hideProgressDialog()
+
+                        if (task.isSuccessful) {
+
+                            val firebaseUser: FirebaseUser = task.result!!.user!!
+                            showErrorSnackBar(
+                                "Registro completo. Bienvenido ${firebaseUser.uid}",
+                                false
+                            )
+
+                            FirebaseAuth.getInstance().signOut()
+                            finish()
+
+                        } else {
+                            showErrorSnackBar(task.exception!!.message.toString(), true)
+                        }
+                    })
+        }
+    }
+
 
 }
