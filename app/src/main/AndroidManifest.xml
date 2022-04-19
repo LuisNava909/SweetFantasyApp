@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SweetFantasy">
-        <activity android:name=".activities.ForgotPasswordActivity"
+        <activity
+            android:name=".activities.UserProfileActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activities.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SweetFantasy.NoActionBar">
         </activity>

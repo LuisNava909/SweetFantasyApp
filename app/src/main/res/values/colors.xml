@@ -21,4 +21,6 @@
 
     <color name="colorSnackBarSuccess">#009cbf</color>
     <color name="colorSnackBarError">#d37700</color>
+
+    <color name="colorLightGrey">#F1F1F1</color>
 </resources>
