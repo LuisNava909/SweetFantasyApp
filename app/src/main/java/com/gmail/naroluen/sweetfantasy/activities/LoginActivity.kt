@@ -12,6 +12,7 @@ import android.view.WindowManager
 import com.gmail.naroluen.sweetfantasy.R
 import com.gmail.naroluen.sweetfantasy.firestore.FirestoreClass
 import com.gmail.naroluen.sweetfantasy.model.User
+import com.gmail.naroluen.sweetfantasy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -42,22 +43,17 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
     fun userLoggedInSuccess(user: User) {
-
         // Hide the progress dialog.
         hideProgressDialog()
-
-        // Print the user details in the log as of now.
-        Log.i("First Name: ", user.firstName)
-        Log.i("Last Name: ", user.lastName)
-        Log.i("Email: ", user.email)
 
         if (user.profileCompleted == 0) {
             // If the user profile is incomplete then launch the UserProfileActivity.
             val intent = Intent(this@LoginActivity, UserProfileActivity::class.java)
+            intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
             startActivity(intent)
         } else {
             // Redirect the user to Main Screen after log in.
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
         }
         finish()
     }

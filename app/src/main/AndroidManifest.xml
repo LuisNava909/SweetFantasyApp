@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gmail.naroluen.sweetfantasy">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,8 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SweetFantasy">
         <activity
+            android:name=".activities.DashboardActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity
             android:name=".activities.UserProfileActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SweetFantasy.NoActionBar">
         </activity>
         <activity
             android:name=".activities.ForgotPasswordActivity"

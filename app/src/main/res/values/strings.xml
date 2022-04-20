@@ -43,4 +43,16 @@
     <string name="rb_lbl_female">MUJER</string>
     <string name="btn_lbl_save">Guardar</string>
 
+    <string name="read_storage_permission_denied">Acceso a almacenamiento denegado. Puede habilitarlo en Configuraciones</string>
+
+    <string name="image_selection_failed">Error selección de imagen!</string>
+
+    <string name="err_msg_enter_mobile_number">Por favor ingrese su teléfono.</string>
+
+    <string name="msg_profile_update_success">Perfil Actualizado.</string>
+    <string name="title_activity_dashboard">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
 </resources>
