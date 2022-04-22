@@ -5,9 +5,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
-import com.gmail.naroluen.sweetfantasy.activities.LoginActivity
-import com.gmail.naroluen.sweetfantasy.activities.RegisterActivity
-import com.gmail.naroluen.sweetfantasy.activities.UserProfileActivity
+import com.gmail.naroluen.sweetfantasy.ui.activities.LoginActivity
+import com.gmail.naroluen.sweetfantasy.ui.activities.RegisterActivity
+import com.gmail.naroluen.sweetfantasy.ui.activities.UserProfileActivity
 import com.gmail.naroluen.sweetfantasy.model.User
 import com.gmail.naroluen.sweetfantasy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth

@@ -11,31 +11,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SweetFantasy">
+        <activity android:name=".ui.activities.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SweetFantasy.NoActionBar">
+        </activity>
         <activity
-            android:name=".activities.DashboardActivity"
+            android:name=".ui.activities.DashboardActivity"
             android:label="@string/app_name">
         </activity>
         <activity
-            android:name=".activities.UserProfileActivity"
+            android:name=".ui.activities.UserProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SweetFantasy.NoActionBar">
         </activity>
         <activity
-            android:name=".activities.ForgotPasswordActivity"
+            android:name=".ui.activities.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SweetFantasy.NoActionBar">
         </activity>
-        <activity android:name=".activities.BaseActivity" />
+        <activity android:name=".ui.activities.BaseActivity" />
         <activity
-            android:name=".activities.RegisterActivity"
+            android:name=".ui.activities.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SweetFantasy.NoActionBar" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".ui.activities.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SweetFantasy.NoActionBar" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".ui.activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SweetFantasy.NoActionBar">
             <intent-filter>
@@ -45,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:screenOrientation="portrait" />
     </application>
 

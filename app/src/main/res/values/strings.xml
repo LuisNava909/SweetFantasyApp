@@ -50,9 +50,19 @@
     <string name="err_msg_enter_mobile_number">Por favor ingrese su teléfono.</string>
 
     <string name="msg_profile_update_success">Perfil Actualizado.</string>
-    <string name="title_activity_dashboard">MainActivity</string>
-    <string name="title_home">Home</string>
+
+    <!--<string name="title_activity_dashboard">MainActivity</string>-->
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_products">Artículos</string>
+    <string name="title_orders">Paquete</string>
+
+    <string name="please_click_back_again_to_exit">Presione Atrás de nuevo para salir</string>
+
+    <string name="action_settings">Configuración</string>
+
+    <string name="title_settings">Configuración</string>
+    <string name="lbl_edit">Editar</string>
+    <string name="lbl_addresses">Dirección</string>
+    <string name="btn_lbl_logout">Cerrar Sesión</string>
 
 </resources>

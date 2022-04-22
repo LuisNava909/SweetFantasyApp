@@ -1,6 +1,5 @@
-package com.gmail.naroluen.sweetfantasy.activities
+package com.gmail.naroluen.sweetfantasy.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.Manifest
 import android.app.Activity
 import android.content.Intent

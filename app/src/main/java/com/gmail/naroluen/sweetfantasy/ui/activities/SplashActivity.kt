@@ -1,4 +1,4 @@
-package com.gmail.naroluen.sweetfantasy.activities
+package com.gmail.naroluen.sweetfantasy.ui.activities
 
 import android.content.Intent
 import android.os.Build

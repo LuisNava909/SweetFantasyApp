@@ -18,9 +18,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorWhite">#FFFFFFFF</color>
 
     <color name="colorSnackBarSuccess">#009cbf</color>
     <color name="colorSnackBarError">#d37700</color>
 
     <color name="colorLightGrey">#F1F1F1</color>
+
+    <color name="colorBorder">#E8E6E6</color>
+    <color name="colorDarkGrey">#878787</color>
 </resources>
