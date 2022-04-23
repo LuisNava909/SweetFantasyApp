@@ -52,9 +52,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         if (v != null) {
             when (v.id) {
-
                 R.id.iv_user_photo -> {
-
                     // Here we will check if the permission is already allowed or we need to request for it.
                     // First of all we will check the READ_EXTERNAL_STORAGE permission and if it is not allowed we will request for the same.
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {

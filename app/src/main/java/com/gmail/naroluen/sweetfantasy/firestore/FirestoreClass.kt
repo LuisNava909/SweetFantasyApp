@@ -9,6 +9,7 @@ import com.gmail.naroluen.sweetfantasy.ui.activities.LoginActivity
 import com.gmail.naroluen.sweetfantasy.ui.activities.RegisterActivity
 import com.gmail.naroluen.sweetfantasy.ui.activities.UserProfileActivity
 import com.gmail.naroluen.sweetfantasy.model.User
+import com.gmail.naroluen.sweetfantasy.ui.activities.SettingsActivity
 import com.gmail.naroluen.sweetfantasy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -48,12 +49,10 @@ class FirestoreClass {
         if (currentUser != null) {
             currentUserID = currentUser.uid
         }
-
         return currentUserID
     }
 
     fun getUserDetails(activity: Activity) {
-
         // Here we pass the collection name from which we wants the data.
         mFireStore.collection(Constants.USERS)
             // The document id to get the Fields of user.
@@ -84,12 +83,18 @@ class FirestoreClass {
                         // Call a function of base activity for transferring the result to it.
                         activity.userLoggedInSuccess(user)
                     }
+                    is SettingsActivity ->{
+                        activity.userDetailsSuccess(user)
+                    }
                 }
             }
             .addOnFailureListener { e ->
                 // Hide the progress dialog if there is any error. And print the error in log.
                 when (activity) {
                     is LoginActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is SettingsActivity -> {
                         activity.hideProgressDialog()
                     }
                 }
