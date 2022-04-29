@@ -7,7 +7,10 @@ import android.provider.MediaStore
 import android.webkit.MimeTypeMap
 
 object Constants {
+    //Collections in cloud firestore
     const val USERS: String = "users"
+    const val PRODUCTS: String = "products"
+
     const val SWEETFANTASY_PREFERENCES: String = "SweetFantasyPrefs"
     const val LOGGED_IN_USERNAME: String = "logged_in_username"
     const val EXTRA_USER_DETAILS: String = "extra_user_details"
@@ -15,12 +18,14 @@ object Constants {
     const val PICK_IMAGE_REQUEST_CODE = 1
     const val MALE: String = "Hombre"
     const val FEMALE: String = "Mujer"
-
+    const val FIRST_NAME: String = "nombre"
+    const val LAST_NAME: String = "apellido"
     // Firebase database field names
     const val MOBILE: String = "mobile"
     const val GENDER: String = "gender"
     const val IMAGE: String = "image"
     const val COMPLETE_PROFILE: String = "profileCompleted"
+    const val PRODUCT_IMAGE: String = "Product_Image"
     const val USER_PROFILE_IMAGE:String = "User_Profile_Image"
 
     fun showImageChooser(activity: Activity) {

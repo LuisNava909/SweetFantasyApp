@@ -28,25 +28,87 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
 
+
         // Create a instance of the User model class.
         //var userDetails: User = User()
         if(intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
             // Get the user details from intent as a ParcelableExtra.
             mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         }
+
+        et_first_name.setText(mUserDetails.firstName)
+        et_last_name.setText(mUserDetails.lastName)
+        et_email.isEnabled = false
+        et_email.setText(mUserDetails.email)
+
+        // If the profile is incomplete then user is from login screen and wants to complete the profile.
+        if (mUserDetails.profileCompleted == 0) {
+            // Update the title of the screen to complete profile.
+            tv_title.text = resources.getString(R.string.title_complete_profile)
+
+            // Here, the some of the edittext components are disabled because it is added at a time of Registration.
+            et_first_name.isEnabled = false
+            et_first_name.setText(mUserDetails.firstName)
+
+            et_last_name.isEnabled = false
+            et_last_name.setText(mUserDetails.lastName)
+
+            et_email.isEnabled = false
+            et_email.setText(mUserDetails.email)
+        } else {
+
+            // Call the setup action bar function.
+            setupActionBar()
+
+            // Update the title of the screen to edit profile.
+            tv_title.text = resources.getString(R.string.title_edit_profile)
+
+            // Load the image using the GlideLoader class with the use of Glide Library.
+            GlideLoader(this@UserProfileActivity).loadUserPicture(mUserDetails.image, iv_user_photo)
+
+            // Set the existing values to the UI and allow user to edit except the Email ID.
+            et_first_name.setText(mUserDetails.firstName)
+            et_last_name.setText(mUserDetails.lastName)
+
+            et_email.isEnabled = false
+            et_email.setText(mUserDetails.email)
+
+            if (mUserDetails.mobile != 0L) {
+                et_mobile_number.setText(mUserDetails.mobile.toString())
+            }
+            if (mUserDetails.gender == Constants.MALE) {
+                rb_male.isChecked = true
+            } else {
+                rb_female.isChecked = true
+            }
+        }
+
         // Here, the some of the edittext components are disabled because it is added at a time of Registration.
-        et_first_name.isEnabled = false
+        /*et_first_name.isEnabled = false
         et_first_name.setText(mUserDetails.firstName)
 
         et_last_name.isEnabled = false
         et_last_name.setText(mUserDetails.lastName)
 
         et_email.isEnabled = false
-        et_email.setText(mUserDetails.email)
+        et_email.setText(mUserDetails.email)*/
 
         iv_user_photo.setOnClickListener(this@UserProfileActivity)
 
         btn_submit.setOnClickListener(this@UserProfileActivity)
+    }
+
+    private fun setupActionBar() {
+
+        setSupportActionBar(toolbar_user_profile_activity)
+
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_white_color_back_24)
+        }
+
+        toolbar_user_profile_activity.setNavigationOnClickListener { onBackPressed() }
     }
 
     override fun onClick(v: View?) {
@@ -78,8 +140,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                         if (mSelectedImageFileUri != null) {
                             FirestoreClass().uploadImageToCloudStorage(
                                 this@UserProfileActivity,
-                                mSelectedImageFileUri
-                            )
+                                mSelectedImageFileUri, Constants.USER_PROFILE_IMAGE)
                         }else{
                             updateUserProfileDetails()
                         }
@@ -91,6 +152,16 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     private fun updateUserProfileDetails() {
         val userHashMap = HashMap<String, Any>()
+        // Get the FirstName from editText and trim the space
+        val firstName = et_first_name.text.toString().trim { it <= ' ' }
+        if (firstName != mUserDetails.firstName) {
+            userHashMap[Constants.FIRST_NAME] = firstName
+        }
+        // Get the LastName from editText and trim the space
+        val lastName = et_last_name.text.toString().trim { it <= ' ' }
+        if (lastName != mUserDetails.lastName) {
+            userHashMap[Constants.LAST_NAME] = lastName
+        }
         // Here the field which are not editable needs no update. So, we will update user Mobile Number and Gender for now.
         val mobileNumber = et_mobile_number.text.toString().trim { it <= ' ' }
         val gender = if (rb_male.isChecked) {
@@ -101,8 +172,11 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         if (mUserProfileImageURL.isNotEmpty()) {
             userHashMap[Constants.IMAGE] = mUserProfileImageURL
         }
-        if (mobileNumber.isNotEmpty()) {
+        if (mobileNumber.isNotEmpty() && mobileNumber != mUserDetails.mobile.toString()) {
             userHashMap[Constants.MOBILE] = mobileNumber.toLong()
+        }
+        if (gender.isNotEmpty() && gender != mUserDetails.gender) {
+            userHashMap[Constants.GENDER] = gender
         }
         userHashMap[Constants.GENDER] = gender
         // 0: User profile is incomplete.
@@ -119,7 +193,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         hideProgressDialog()
         Toast.makeText(this@UserProfileActivity, resources.getString(R.string.msg_profile_update_success), Toast.LENGTH_SHORT).show()
         // Redirect to the Main Screen after profile completion.
-        startActivity(Intent(this@UserProfileActivity, MainActivity::class.java))
+        startActivity(Intent(this@UserProfileActivity, DashboardActivity::class.java))
         finish()
     }
 

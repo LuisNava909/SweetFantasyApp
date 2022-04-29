@@ -5,11 +5,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
-import com.gmail.naroluen.sweetfantasy.ui.activities.LoginActivity
-import com.gmail.naroluen.sweetfantasy.ui.activities.RegisterActivity
-import com.gmail.naroluen.sweetfantasy.ui.activities.UserProfileActivity
+import com.gmail.naroluen.sweetfantasy.model.Product
 import com.gmail.naroluen.sweetfantasy.model.User
-import com.gmail.naroluen.sweetfantasy.ui.activities.SettingsActivity
+import com.gmail.naroluen.sweetfantasy.ui.activities.*
 import com.gmail.naroluen.sweetfantasy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -134,13 +132,13 @@ class FirestoreClass {
             }
     }
 
-    fun uploadImageToCloudStorage(activity: Activity, imageFileURI: Uri?) {
+    fun uploadImageToCloudStorage(activity: Activity, imageFileURI: Uri?, imageType: String) {
         //getting the storage reference
         val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
-            Constants.USER_PROFILE_IMAGE + System.currentTimeMillis() + "."
-                    + Constants.getFileExtension(
-                activity,
-                imageFileURI
+                imageType + System.currentTimeMillis() + "."
+                        + Constants.getFileExtension(
+                        activity,
+                        imageFileURI
             )
         )
         //adding the file to reference
@@ -160,6 +158,9 @@ class FirestoreClass {
                             is UserProfileActivity -> {
                                 activity.imageUploadSuccess(uri.toString())
                             }
+                            is AddProductActivity -> {
+                                activity.imageUploadSuccess(uri.toString())
+                            }
                         }
                     }
             }
@@ -167,6 +168,9 @@ class FirestoreClass {
                 // Hide the progress dialog if there is any error. And print the error in log.
                 when (activity) {
                     is UserProfileActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is AddProductActivity -> {
                         activity.hideProgressDialog()
                     }
                 }
@@ -177,4 +181,27 @@ class FirestoreClass {
                 )
             }
     }
+
+    /**
+     * A function to make an entry of the user's product in the cloud firestore database.
+     */
+    fun uploadProductDetails(activity: AddProductActivity, productInfo: Product) {
+        mFireStore.collection(Constants.PRODUCTS)
+                .document()
+                // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+                .set(productInfo, SetOptions.merge())
+                .addOnSuccessListener {
+                    // Here call a function of base activity for transferring the result to it.
+                    activity.productUploadSuccess()
+                }
+                .addOnFailureListener { e ->
+                    activity.hideProgressDialog()
+                    Log.e(
+                            activity.javaClass.simpleName,
+                            "Error al guardar los detalles de artículo",
+                            e
+                    )
+                }
+    }
+
 }
