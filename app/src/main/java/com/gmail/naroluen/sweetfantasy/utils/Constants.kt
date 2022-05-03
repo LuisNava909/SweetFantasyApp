@@ -28,6 +28,8 @@ object Constants {
     const val PRODUCT_IMAGE: String = "Product_Image"
     const val USER_PROFILE_IMAGE:String = "User_Profile_Image"
 
+    const val USER_ID: String = "user_id"
+
     fun showImageChooser(activity: Activity) {
         // An intent for launching the image selection of phone storage.
         val galleryIntent = Intent(
