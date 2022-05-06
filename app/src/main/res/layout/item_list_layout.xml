@@ -27,18 +27,16 @@
             android:scaleType="fitXY" />
     </LinearLayout>
 
-    <!--TODO Step 2: Update the item list design.-->
-    <!--START-->
     <LinearLayout
-
+        android:id="@+id/ll_product_details"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/item_image_title_price_marginStart"
-
+        android:layout_marginEnd="@dimen/item_image_title_price_marginStart"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ib_delete_product"
         app:layout_constraintStart_toEndOf="@id/ll_item_image"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -61,7 +59,7 @@
             tools:text="$100.00" />
     </LinearLayout>
 
-    <!--<ImageButton
+    <ImageButton
         android:id="@+id/ib_delete_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,5 +71,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ll_product_details"
         app:layout_constraintTop_toTopOf="parent" />
-    END-->
+    <!--END-->
 </androidx.constraintlayout.widget.ConstraintLayout>

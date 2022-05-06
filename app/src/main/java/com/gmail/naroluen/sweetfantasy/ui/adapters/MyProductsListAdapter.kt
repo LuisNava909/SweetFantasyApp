@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.naroluen.sweetfantasy.R
 import com.gmail.naroluen.sweetfantasy.model.Product
+import com.gmail.naroluen.sweetfantasy.ui.fragments.ProductsFragment
 import com.gmail.naroluen.sweetfantasy.utils.GlideLoader
 import kotlinx.android.synthetic.main.item_list_layout.view.*
 
 open class MyProductsListAdapter(
         private val context: Context,
         private var list: ArrayList<Product>,
-        //private val fragment: ProductsFragment
+        private val fragment: ProductsFragment
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -32,21 +33,14 @@ open class MyProductsListAdapter(
         if (holder is MyViewHolder) {
 
             GlideLoader(context).loadProductPicture(model.image, holder.itemView.iv_item_image)
-
             holder.itemView.tv_item_name.text = model.title
             holder.itemView.tv_item_price.text = "$${model.price}"
-            /*
-            // TODO Step 4: Assigning the click event to the delete button.
-            // START
-            holder.itemView.ib_delete_product.setOnClickListener {
 
-                // TODO Step 8: Now let's call the delete function of the ProductsFragment.
-                // START
+            holder.itemView.ib_delete_product.setOnClickListener{
                 fragment.deleteProduct(model.product_id)
-                // END */
             }
-            // END
         }
+    }
 
     override fun getItemCount(): Int {
         return list.size

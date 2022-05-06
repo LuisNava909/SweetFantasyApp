@@ -82,8 +82,14 @@
 
     <string name="product_uploaded_success_message">Artículo agregado</string>
     <string name="no_products_added_yet">Aún no se han agregado artículos</string>
-    <string name="no_dashboard_item_found">NO se encontraron artículos!</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="no_dashboard_item_found">No se encontraron artículos!</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="product_delete_success_message">Artículo eliminado</string>
+    <string name="delete_dialog_title">Eliminar</string>
+    <string name="delete_dialog_message">¿Eliminar el artículo?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
 
 </resources>

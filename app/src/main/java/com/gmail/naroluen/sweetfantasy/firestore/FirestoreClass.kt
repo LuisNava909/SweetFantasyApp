@@ -9,6 +9,7 @@ import android.util.Log
 import com.gmail.naroluen.sweetfantasy.model.Product
 import com.gmail.naroluen.sweetfantasy.model.User
 import com.gmail.naroluen.sweetfantasy.ui.activities.*
+import com.gmail.naroluen.sweetfantasy.ui.fragments.DashboardFragment
 import com.gmail.naroluen.sweetfantasy.ui.fragments.ProductsFragment
 import com.gmail.naroluen.sweetfantasy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -244,5 +245,58 @@ class FirestoreClass {
                 }
     }
 
+    /**
+     * A function to delete the product from the cloud firestore.
+     */
+    fun deleteProduct(fragment: ProductsFragment, productId: String) {
+        //ACCESS FIRESTORE DB
+        mFireStore.collection(Constants.PRODUCTS)
+                .document(productId)
+                .delete()
+                .addOnSuccessListener {
+                    // Notify the success result to the base class.
+                    fragment.productDeleteSuccess()
+                }
+                .addOnFailureListener { e ->
+                    // Hide the progress dialog if there is an error.
+                    fragment.hideProgressDialog()
+                    Log.e(
+                            fragment.requireActivity().javaClass.simpleName,
+                            "Error al eliminar artículo",
+                            e
+                    )
+                }
+    }
+
+    /**
+     * A function to get the dashboard items list. The list will be an overall items list, not based on the user's id.
+     */
+    fun getDashboardItemsList(fragment: DashboardFragment) {
+        // The collection name for PRODUCTS
+        mFireStore.collection(Constants.PRODUCTS)
+                .get() // Will get the documents snapshots.
+                .addOnSuccessListener { document ->
+                    // Here we get the list of boards in the form of documents.
+                    Log.e(fragment.javaClass.simpleName, document.documents.toString())
+
+                    // Here we have created a new instance for Products ArrayList.
+                    val productsList: ArrayList<Product> = ArrayList()
+
+                    // A for loop as per the list of documents to convert them into Products ArrayList.
+                    for (i in document.documents) {
+
+                        val product = i.toObject(Product::class.java)!!
+                        product.product_id = i.id
+                        productsList.add(product)
+                    }
+                    // Pass the success result to the base fragment.
+                    fragment.successDashboardItemsList(productsList)
+                }
+                .addOnFailureListener { e ->
+                    // Hide the progress dialog if there is any error which getting the dashboard items list.
+                    fragment.hideProgressDialog()
+                    Log.e(fragment.javaClass.simpleName, "Error al obtener artículos de Dashboard", e)
+                }
+    }
 
 }

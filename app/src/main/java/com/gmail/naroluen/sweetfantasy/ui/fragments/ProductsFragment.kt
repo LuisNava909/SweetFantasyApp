@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmail.naroluen.sweetfantasy.R
@@ -24,6 +26,64 @@ class ProductsFragment : BaseFragment() {
     }
 
     /**
+     * A function that will call the delete function of FirestoreClass that will delete the product added by the user.
+     *
+     * @param productID To specify which product need to be deleted.
+     */
+    fun deleteProduct(productID: String) {
+        showAlertDialogToDeleteProduct(productID)
+    }
+
+    /**
+     * A function to show the alert dialog for the confirmation of delete product from cloud firestore.
+     */
+    private fun showAlertDialogToDeleteProduct(productID: String) {
+        val builder = AlertDialog.Builder(requireActivity())
+        //set title for alert dialog
+        builder.setTitle(resources.getString(R.string.delete_dialog_title))
+        //set message for alert dialog
+        builder.setMessage(resources.getString(R.string.delete_dialog_message))
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+        //performing positive action
+        builder.setPositiveButton(resources.getString(R.string.yes)) { dialogInterface, _ ->
+            // Show the progress dialog.
+            showProgressDialog(resources.getString(R.string.please_wait))
+
+            // Call the function of Firestore class.
+            FirestoreClass().deleteProduct(this@ProductsFragment, productID)
+
+            dialogInterface.dismiss()
+        }
+
+        //performing negative action
+        builder.setNegativeButton(resources.getString(R.string.no)) { dialogInterface, _ ->
+
+            dialogInterface.dismiss()
+        }
+        // Create the AlertDialog
+        val alertDialog: AlertDialog = builder.create()
+        // Set other dialog properties
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+    }
+
+    /**
+     * A function to notify the success result of product deleted from cloud firestore.
+     */
+    fun productDeleteSuccess() {
+        // Hide the progress dialog
+        hideProgressDialog()
+        Toast.makeText(
+                requireActivity(),
+                resources.getString(R.string.product_delete_success_message),
+                Toast.LENGTH_SHORT
+        ).show()
+        // Get the latest products list from cloud firestore.
+        getProductListFromFireStore()
+    }
+
+    /**
      * A function to get the successful product list from cloud firestore.
      *
      * @param productsList Will receive the product list from cloud firestore.
@@ -39,11 +99,8 @@ class ProductsFragment : BaseFragment() {
             rv_my_product_items.layoutManager = LinearLayoutManager(activity)
             rv_my_product_items.setHasFixedSize(true)
 
-            // TODO Step 7: Pass the third parameter value.
-            // START
             val adapterProducts =
-                    MyProductsListAdapter(requireActivity(), productsList)
-            // END
+                    MyProductsListAdapter(requireActivity(), productsList,this@ProductsFragment)
             rv_my_product_items.adapter = adapterProducts
         } else {
             rv_my_product_items.visibility = View.GONE
