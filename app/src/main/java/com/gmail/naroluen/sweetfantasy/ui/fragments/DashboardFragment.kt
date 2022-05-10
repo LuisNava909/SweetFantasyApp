@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.gmail.naroluen.sweetfantasy.R
 import com.gmail.naroluen.sweetfantasy.firestore.FirestoreClass
 import com.gmail.naroluen.sweetfantasy.model.Product
+import com.gmail.naroluen.sweetfantasy.ui.activities.ProductDetailsActivity
 import com.gmail.naroluen.sweetfantasy.ui.activities.SettingsActivity
 import com.gmail.naroluen.sweetfantasy.ui.adapters.DashboardItemsListAdapter
+import com.gmail.naroluen.sweetfantasy.utils.Constants
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class DashboardFragment : BaseFragment() {
@@ -77,6 +79,16 @@ class DashboardFragment : BaseFragment() {
 
             val adapter = DashboardItemsListAdapter(requireActivity(), dashboardItemsList)
             rv_dashboard_items.adapter = adapter
+
+            adapter.setOnClickListener(object :
+                DashboardItemsListAdapter.OnClickListener {
+                override fun onClick(position: Int, product: Product) {
+                    //Launch the product details screen from the dashboard.
+                    val intent = Intent(context, ProductDetailsActivity::class.java)
+                    intent.putExtra(Constants.EXTRA_PRODUCT_ID, product.product_id)
+                    startActivity(intent)
+                }
+            })
         } else {
             rv_dashboard_items.visibility = View.GONE
             tv_no_dashboard_items_found.visibility = View.VISIBLE

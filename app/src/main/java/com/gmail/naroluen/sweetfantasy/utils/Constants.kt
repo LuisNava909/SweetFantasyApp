@@ -14,6 +14,7 @@ object Constants {
     const val SWEETFANTASY_PREFERENCES: String = "SweetFantasyPrefs"
     const val LOGGED_IN_USERNAME: String = "logged_in_username"
     const val EXTRA_USER_DETAILS: String = "extra_user_details"
+    const val EXTRA_PRODUCT_ID: String = "extra_product_id"
     const val READ_STORAGE_PERMISSION_CODE = 2
     const val PICK_IMAGE_REQUEST_CODE = 1
     const val MALE: String = "Hombre"
@@ -29,6 +30,7 @@ object Constants {
     const val USER_PROFILE_IMAGE:String = "User_Profile_Image"
 
     const val USER_ID: String = "user_id"
+
 
     fun showImageChooser(activity: Activity) {
         // An intent for launching the image selection of phone storage.

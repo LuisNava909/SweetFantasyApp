@@ -92,4 +92,8 @@
     <string name="yes">Si</string>
     <string name="no">No</string>
 
+    <string name="title_product_details">DETALLES DE ARTÍCULO</string>
+    <string name="lbl_product_description">Descripción</string>
+    <string name="lbl_product_details_stock_quantity">Cantidad disponible</string>
+
 </resources>

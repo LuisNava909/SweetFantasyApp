@@ -246,6 +246,29 @@ class FirestoreClass {
     }
 
     /**
+     * A function to get the product details based on the product id.
+     */
+    fun getProductDetails(activity: ProductDetailsActivity, productId: String) {
+        // The collection name for PRODUCTS
+        mFireStore.collection(Constants.PRODUCTS)
+            .document(productId)
+            .get() // Will get the document snapshots.
+            .addOnSuccessListener { document ->
+                // Here we get the product details in the form of document.
+                Log.e(activity.javaClass.simpleName, document.toString())
+                // Convert the snapshot to the object of Product data model class.
+                val product = document.toObject(Product::class.java)!!
+
+                activity.productDetailsSuccess(product)
+            }
+            .addOnFailureListener { e ->
+                // Hide the progress dialog if there is an error.
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error detalles de artículo", e)
+            }
+    }
+
+    /**
      * A function to delete the product from the cloud firestore.
      */
     fun deleteProduct(fragment: ProductsFragment, productId: String) {
