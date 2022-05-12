@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
+import com.gmail.naroluen.sweetfantasy.model.CartItem
 import com.gmail.naroluen.sweetfantasy.model.Product
 import com.gmail.naroluen.sweetfantasy.model.User
 import com.gmail.naroluen.sweetfantasy.ui.activities.*
@@ -269,6 +270,31 @@ class FirestoreClass {
     }
 
     /**
+     * A function to add the item to the cart in the cloud firestore.
+     *
+     * @param activity
+     * @param addToCart
+     */
+    fun addCartItems(activity: ProductDetailsActivity, addToCart: CartItem) {
+        mFireStore.collection(Constants.CART_ITEMS)
+                .document()
+                // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+                .set(addToCart, SetOptions.merge())
+                .addOnSuccessListener {
+                    // Here call a function of base activity for transferring the result to it.
+                    activity.addToCartSuccess()
+                }
+                .addOnFailureListener { e ->
+                    activity.hideProgressDialog()
+                    Log.e(
+                            activity.javaClass.simpleName,
+                            "Error while creating the document for cart item.",
+                            e
+                    )
+                }
+    }
+
+    /**
      * A function to delete the product from the cloud firestore.
      */
     fun deleteProduct(fragment: ProductsFragment, productId: String) {
@@ -286,6 +312,31 @@ class FirestoreClass {
                     Log.e(
                             fragment.requireActivity().javaClass.simpleName,
                             "Error al eliminar artículo",
+                            e
+                    )
+                }
+    }
+
+    fun checkIfItemExistInCart(activity: ProductDetailsActivity, productId: String) {
+        mFireStore.collection(Constants.CART_ITEMS)
+                .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+                .whereEqualTo(Constants.PRODUCT_ID, productId)
+                .get()
+                .addOnSuccessListener { document ->
+                    Log.e(activity.javaClass.simpleName, document.documents.toString())
+                    // If the document size is greater than 1 it means the product is already added to the cart.
+                    if (document.documents.size > 0) {
+                        activity.productExistsInCart()
+                    } else {
+                        activity.hideProgressDialog()
+                    }
+                }
+                .addOnFailureListener { e ->
+                    // Hide the progress dialog if there is an error.
+                    activity.hideProgressDialog()
+                    Log.e(
+                            activity.javaClass.simpleName,
+                            "Error while checking the existing cart list.",
                             e
                     )
                 }

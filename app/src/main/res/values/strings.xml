@@ -55,7 +55,7 @@
     <!--<string name="title_activity_dashboard">MainActivity</string>-->
     <string name="title_dashboard">Dashboard</string>
     <string name="title_products">Artículos</string>
-    <string name="title_orders">Paquete</string>
+    <string name="title_orders">Mi Regalo</string>
 
     <string name="please_click_back_again_to_exit">Presione Atrás de nuevo para salir</string>
 
@@ -95,5 +95,11 @@
     <string name="title_product_details">DETALLES DE ARTÍCULO</string>
     <string name="lbl_product_description">Descripción</string>
     <string name="lbl_product_details_stock_quantity">Cantidad disponible</string>
+
+    <string name="btn_lbl_add_to_cart">AGREGAR A MI REGALO</string>
+
+    <string name="success_message_item_added_to_cart">Artículo agregado al regalo.</string>
+
+    <string name="btn_lbl_go_to_cart">VER MI REGALO</string>
 
 </resources>
