@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.gmail.naroluen.sweetfantasy.R
 import com.gmail.naroluen.sweetfantasy.firestore.FirestoreClass
 import com.gmail.naroluen.sweetfantasy.model.Product
+import com.gmail.naroluen.sweetfantasy.ui.activities.CartListActivity
 import com.gmail.naroluen.sweetfantasy.ui.activities.ProductDetailsActivity
 import com.gmail.naroluen.sweetfantasy.ui.activities.SettingsActivity
 import com.gmail.naroluen.sweetfantasy.ui.adapters.DashboardItemsListAdapter
@@ -56,6 +57,11 @@ class DashboardFragment : BaseFragment() {
             R.id.action_settings -> {
                 //Launch the SettingActivity on click of action item.
                 startActivity(Intent(activity, SettingsActivity::class.java))
+                return true
+            }
+            //Click event of Cart action item.
+            R.id.action_cart -> {
+                startActivity(Intent(activity, CartListActivity::class.java))
                 return true
             }
         }

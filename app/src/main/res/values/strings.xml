@@ -102,4 +102,12 @@
 
     <string name="btn_lbl_go_to_cart">VER MI REGALO</string>
 
+    <string name="title_my_cart">MI REGALO</string>
+    <string name="no_cart_item_found">No hay artículos en el regalo!</string>
+    <string name="lbl_subtotal">Subtotal</string>
+    <string name="lbl_shipping_charge">Cargos de envío</string>
+    <string name="lbl_total_amount">Total</string>
+    <string name="btn_lbl_checkout">Comprar</string>
+    <string name="action_cart">Mi Regalo</string>
+
 </resources>
