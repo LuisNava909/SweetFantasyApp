@@ -110,4 +110,7 @@
     <string name="btn_lbl_checkout">Comprar</string>
     <string name="action_cart">Mi Regalo</string>
 
+    <string name="lbl_out_of_stock">NO DISPONIBLE</string>
+    <string name="msg_item_removed_successfully">Artículo eliminado.</string>
+
 </resources>

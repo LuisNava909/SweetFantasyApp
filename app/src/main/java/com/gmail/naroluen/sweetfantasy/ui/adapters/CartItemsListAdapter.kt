@@ -4,9 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.naroluen.sweetfantasy.R
+import com.gmail.naroluen.sweetfantasy.firestore.FirestoreClass
 import com.gmail.naroluen.sweetfantasy.model.CartItem
+import com.gmail.naroluen.sweetfantasy.ui.activities.CartListActivity
 import com.gmail.naroluen.sweetfantasy.utils.GlideLoader
 import kotlinx.android.synthetic.main.item_cart_layout.view.*
 
@@ -32,6 +35,39 @@ open class CartItemsListAdapter(
             holder.itemView.tv_cart_item_title.text = model.title
             holder.itemView.tv_cart_item_price.text = "$${model.price}"
             holder.itemView.tv_cart_quantity.text = model.cart_quantity
+
+            //Show the text Out of Stock when cart quantity is zero.
+            if (model.cart_quantity == "0") {
+                holder.itemView.ib_remove_cart_item.visibility = View.GONE
+                holder.itemView.ib_add_cart_item.visibility = View.GONE
+                holder.itemView.tv_cart_quantity.text =
+                        context.resources.getString(R.string.lbl_out_of_stock)
+                holder.itemView.tv_cart_quantity.setTextColor(
+                        ContextCompat.getColor(
+                                context,
+                                R.color.colorSnackBarError
+                        )
+                )
+            } else {
+                holder.itemView.ib_remove_cart_item.visibility = View.VISIBLE
+                holder.itemView.ib_add_cart_item.visibility = View.VISIBLE
+                holder.itemView.tv_cart_quantity.setTextColor(
+                        ContextCompat.getColor(
+                                context,
+                                R.color.colorSecondaryText
+                        )
+                )
+            }
+            //Assign the onclick event to the ib_delete_cart_item.
+            holder.itemView.ib_delete_cart_item.setOnClickListener{
+                //Call the firestore class function to remove the item from cloud firestore.
+                when (context) {
+                    is CartListActivity -> {
+                        context.showProgressDialog(context.resources.getString(R.string.please_wait))
+                    }
+                }
+                FirestoreClass().removeItemFromCart(context, model.id)
+            }
         }
     }
 
