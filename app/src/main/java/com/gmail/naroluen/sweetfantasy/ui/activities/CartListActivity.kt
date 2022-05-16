@@ -113,6 +113,12 @@ class CartListActivity : BaseActivity() {
         FirestoreClass().getCartList(this@CartListActivity)
     }
 
+    //Function to notify the user about the item quantity updated in the cart list.
+    fun itemUpdateSuccess() {
+        hideProgressDialog()
+        getCartItemsList()
+    }
+
     //Override the onResume function and call the function to getCartItemsList.
     override fun onResume() {
         super.onResume()

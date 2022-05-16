@@ -113,4 +113,6 @@
     <string name="lbl_out_of_stock">NO DISPONIBLE</string>
     <string name="msg_item_removed_successfully">Artículo eliminado.</string>
 
+    <string name="msg_for_available_stock">Lo sentimos. La cantidad disponible es de solo %1$s</string>
+
 </resources>
