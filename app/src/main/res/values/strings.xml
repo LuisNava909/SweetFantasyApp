@@ -63,10 +63,10 @@
 
     <string name="title_settings">Configuración</string>
     <string name="lbl_edit">Editar</string>
-    <string name="lbl_addresses">Dirección</string>
+    <string name="lbl_addresses">Direcciones</string>
     <string name="btn_lbl_logout">Cerrar Sesión</string>
 
-    <string name="action_add_product">Add Product</string>
+    <string name="action_add_product">Agregar artículo</string>
 
     <string name="title_add_product">AÑADIR ARTÍCULO</string>
     <string name="et_hint_product_title">Artículo</string>
@@ -114,5 +114,28 @@
     <string name="msg_item_removed_successfully">Artículo eliminado.</string>
 
     <string name="msg_for_available_stock">Lo sentimos. La cantidad disponible es de solo %1$s</string>
+
+    <string name="title_address_list">MIS DIRECCIONES</string>
+    <string name="no_address_found">No tiene direcciones de envío</string>
+    <string name="lbL_add_address">Agregar dirección</string>
+
+    <string name="title_add_address">AGREGAR DIRECCIÓN</string>
+    <string name="hint_full_name">Nombre Completo</string>
+    <string name="hint_phone_number">Número de teléfono</string>
+    <string name="hint_address">Dirección</string>
+    <string name="hint_zip_code">Código Postal</string>
+    <string name="hint_additional_note">Interior</string>
+    <string name="hint_other_details">Otro tipo de dirección</string>
+    <string name="lbl_home">CASA</string>
+    <string name="lbl_office">OFICINA</string>
+    <string name="lbl_other">OTRO</string>
+
+    <string name="err_msg_please_enter_full_name">Ingrese su nombre</string>
+    <string name="err_msg_please_enter_phone_number">Ingrese su número de teléfono</string>
+    <string name="err_msg_please_enter_address">Ingrese una dirección</string>
+    <string name="err_msg_please_enter_zip_code">Ingrese un Código Postal</string>
+    <string name="err_msg_please_enter_other_details">Seleccione el tipo de direccción</string>
+
+    <string name="err_your_address_added_successfully">Dirección guardada</string>
 
 </resources>

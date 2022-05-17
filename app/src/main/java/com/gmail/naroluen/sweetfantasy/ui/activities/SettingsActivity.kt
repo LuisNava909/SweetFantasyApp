@@ -23,6 +23,7 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
 
         tv_edit.setOnClickListener(this@SettingsActivity)
         btn_logout.setOnClickListener(this@SettingsActivity)
+        ll_address.setOnClickListener(this@SettingsActivity)
         }
 
     private fun setupActionBar() {
@@ -75,6 +76,10 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     finish()
+                }
+                R.id.ll_address -> {
+                    val intent = Intent(this@SettingsActivity, AddressListActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }
