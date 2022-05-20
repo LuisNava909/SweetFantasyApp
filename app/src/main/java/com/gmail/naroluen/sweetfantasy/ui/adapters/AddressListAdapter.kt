@@ -1,18 +1,24 @@
 package com.gmail.naroluen.sweetfantasy.ui.adapters
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.naroluen.sweetfantasy.R
 import com.gmail.naroluen.sweetfantasy.model.Address
+import com.gmail.naroluen.sweetfantasy.ui.activities.AddEditAddressActivity
+import com.gmail.naroluen.sweetfantasy.utils.Constants
 import kotlinx.android.synthetic.main.item_address_layout.view.*
 
 open class AddressListAdapter(
         private val context: Context,
-        private var list: ArrayList<Address>
+        private var list: ArrayList<Address>,
+        private val selectAddress: Boolean
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     /**
@@ -29,6 +35,19 @@ open class AddressListAdapter(
                         false
                 )
         )
+    }
+
+    /**
+     * A function to edit the address details and pass the existing details through intent.
+     *
+     * @param activity
+     * @param position
+     */
+    fun notifyEditItem(activity: Activity, position: Int) {
+        val intent = Intent(context, AddEditAddressActivity::class.java)
+        intent.putExtra(Constants.EXTRA_ADDRESS_DETAILS, list[position])
+        activity.startActivityForResult(intent, Constants.ADD_ADDRESS_REQUEST_CODE)
+        notifyItemChanged(position) // Notify any registered observers that the item at position has changed.
     }
 
     /**
@@ -49,6 +68,14 @@ open class AddressListAdapter(
             holder.itemView.tv_address_type.text = model.type
             holder.itemView.tv_address_details.text = "${model.address}, ${model.zipCode}"
             holder.itemView.tv_address_mobile_number.text = model.mobileNumber
+
+            //Assign the click event to the address item when user is about to select the address.
+            if (selectAddress) {
+                holder.itemView.setOnClickListener {
+                    Toast.makeText(context, "Selected address : ${model.address}, ${model.zipCode}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
         }
     }
 

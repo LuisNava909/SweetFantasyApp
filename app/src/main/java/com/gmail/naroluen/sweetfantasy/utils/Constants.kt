@@ -30,6 +30,8 @@ object Constants {
     const val PRODUCT_IMAGE: String = "Product_Image"
     const val USER_PROFILE_IMAGE:String = "User_Profile_Image"
 
+    const val EXTRA_ADDRESS_DETAILS: String = "AddressDetails"
+
     const val USER_ID: String = "user_id"
 
     const val DEFAULT_CART_QUANTITY: String = "1"
@@ -45,6 +47,9 @@ object Constants {
     const val OTHER: String = "Otro"
 
     const val ADDRESSES: String = "addresses"
+
+    const val EXTRA_SELECT_ADDRESS: String = "extra_select_address"
+    const val ADD_ADDRESS_REQUEST_CODE: Int = 121
 
 
     fun showImageChooser(activity: Activity) {

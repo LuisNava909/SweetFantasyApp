@@ -1,5 +1,6 @@
 package com.gmail.naroluen.sweetfantasy.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import com.gmail.naroluen.sweetfantasy.firestore.FirestoreClass
 import com.gmail.naroluen.sweetfantasy.model.CartItem
 import com.gmail.naroluen.sweetfantasy.model.Product
 import com.gmail.naroluen.sweetfantasy.ui.adapters.CartItemsListAdapter
+import com.gmail.naroluen.sweetfantasy.utils.Constants
 import kotlinx.android.synthetic.main.activity_cart_list.*
 
 
@@ -24,6 +26,14 @@ class CartListActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart_list)
         setupActionBar()
+
+        //Assign the click event to the checkout button and proceed to the next screen.
+        btn_checkout.setOnClickListener {
+            val intent = Intent(this@CartListActivity, AddressListActivity::class.java)
+            intent.putExtra(Constants.EXTRA_SELECT_ADDRESS, true)
+            startActivity(intent)
+        }
+
     }
 
     fun successCartItemsList(cartList: ArrayList<CartItem>) {

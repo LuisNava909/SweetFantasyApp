@@ -138,4 +138,12 @@
 
     <string name="err_your_address_added_successfully">Dirección guardada</string>
 
+    <string name="title_edit_address">EDITAR DIRECCIÓN</string>
+    <string name="btn_lbl_update">ACTUALIZAR</string>
+    <string name="msg_your_address_updated_successfully">Dirección actualizada</string>
+
+    <string name="err_your_address_deleted_successfully">Dirección elminiada</string>
+
+    <string name="title_select_address">ELIJA UNA DIRECCIÓN</string>
+
 </resources>
