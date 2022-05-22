@@ -6,10 +6,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
-import com.gmail.naroluen.sweetfantasy.model.Address
-import com.gmail.naroluen.sweetfantasy.model.CartItem
-import com.gmail.naroluen.sweetfantasy.model.Product
-import com.gmail.naroluen.sweetfantasy.model.User
+import com.gmail.naroluen.sweetfantasy.model.*
 import com.gmail.naroluen.sweetfantasy.ui.activities.*
 import com.gmail.naroluen.sweetfantasy.ui.fragments.DashboardFragment
 import com.gmail.naroluen.sweetfantasy.ui.fragments.ProductsFragment
@@ -339,6 +336,9 @@ class FirestoreClass {
                     is CartListActivity -> {
                         activity.successCartItemsList(list)
                     }
+                    is CheckoutActivity -> {
+                        activity.successCartItemsList(list)
+                    }
                 }
             }
             .addOnFailureListener { e ->
@@ -347,8 +347,36 @@ class FirestoreClass {
                     is CartListActivity -> {
                         activity.hideProgressDialog()
                     }
+                    is CheckoutActivity -> {
+                        activity.hideProgressDialog()
+                    }
                 }
                 Log.e(activity.javaClass.simpleName, "Error while getting the cart list items.", e)
+            }
+    }
+
+    /**
+     * A function to place an order of the user in the cloud firestore.
+     *
+     * @param activity base class
+     * @param order Order Info
+     */
+    fun placeOrder(activity: CheckoutActivity, order: Order) {
+        mFireStore.collection(Constants.ORDERS)
+            .document()
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(order, SetOptions.merge())
+            .addOnSuccessListener {
+                //Call a function of base activity for transferring the result to it.
+                activity.orderPlacedSuccess()
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while placing an order.",
+                    e
+                )
             }
     }
 
@@ -546,7 +574,7 @@ class FirestoreClass {
      *
      * @param activity The activity is passed as parameter to the function because it is called from activity and need to the success result.
      */
-    fun getAllProductsList(activity: CartListActivity) {
+    fun getAllProductsList(activity: Activity) {
         // The collection name for PRODUCTS
         mFireStore.collection(Constants.PRODUCTS)
                 .get() // Will get the documents snapshots.
@@ -561,12 +589,28 @@ class FirestoreClass {
                         product!!.product_id = i.id
                         productsList.add(product)
                     }
-                    //Pass the success result of the product list to the cart list activity.
-                    activity.successProductsListFromFireStore(productsList)
+                    when (activity) {
+                        is CartListActivity -> {
+                            //Pass the success result of the product list to the cart list activity.
+                            activity.successProductsListFromFireStore(productsList)
+                        }
+                        //Notify the success result to the base class.
+                        is CheckoutActivity -> {
+                            activity.successProductsListFromFireStore(productsList)
+                        }
+                    }
                 }
                 .addOnFailureListener { e ->
-                    // Hide the progress dialog if there is any error based on the base class instance.
-                    activity.hideProgressDialog()
+                    when (activity) {
+                        is CartListActivity -> {
+                            // Hide the progress dialog if there is any error based on the base class instance.
+                            activity.hideProgressDialog()
+                        }
+                        is CheckoutActivity -> {
+                            // Hide the progress dialog if there is any error based on the base class instance.
+                            activity.hideProgressDialog()
+                        }
+                    }
                     Log.e("Get Product List", "Error while getting all product list.", e)
                 }
     }

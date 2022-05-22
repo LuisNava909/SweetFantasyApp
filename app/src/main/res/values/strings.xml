@@ -53,9 +53,9 @@
     <string name="msg_profile_update_success">Perfil Actualizado.</string>
 
     <!--<string name="title_activity_dashboard">MainActivity</string>-->
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_products">Artículos</string>
-    <string name="title_orders">Mi Regalo</string>
+    <string name="title_dashboard">Artículos</string>
+    <string name="title_products">Dashboard</string>
+    <string name="title_orders">Mis Regalos</string>
 
     <string name="please_click_back_again_to_exit">Presione Atrás de nuevo para salir</string>
 
@@ -145,5 +145,13 @@
     <string name="err_your_address_deleted_successfully">Dirección elminiada</string>
 
     <string name="title_select_address">ELIJA UNA DIRECCIÓN</string>
+
+    <string name="title_checkout">PAGO</string>
+    <string name="checkout_lbl_product_items">Artículos en Mi Regalo</string>
+    <string name="checkout_lbl_selected_address">Dirección de Envío</string>
+    <string name="checkout_lbl_items_receipt">Regalo</string>
+    <string name="lbl_payment_mode">Forma de Pago</string>
+    <string name="lbl_cash_on_delivery">Efectivo al Recibir</string>
+    <string name="btn_lbl_place_order">COMPRAR REGALO</string>
 
 </resources>

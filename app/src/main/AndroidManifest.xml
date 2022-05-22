@@ -11,40 +11,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SweetFantasy">
-        <activity android:name=".ui.activities.AddEditAddressActivity"
+        <activity android:name=".ui.activities.CheckoutActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SweetFantasy.NoActionBar"/>
+            android:theme="@style/Theme.SweetFantasy.NoActionBar" />
+        <activity
+            android:name=".ui.activities.AddEditAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SweetFantasy.NoActionBar" />
         <activity
             android:name=".ui.activities.AddressListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SweetFantasy.NoActionBar"></activity>
+            android:theme="@style/Theme.SweetFantasy.NoActionBar" />
         <activity
             android:name=".ui.activities.CartListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SweetFantasy.NoActionBar"></activity>
+            android:theme="@style/Theme.SweetFantasy.NoActionBar" />
         <activity
             android:name=".ui.activities.ProductDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SweetFantasy.NoActionBar"></activity>
+            android:theme="@style/Theme.SweetFantasy.NoActionBar" />
         <activity
             android:name=".ui.activities.AddProductActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SweetFantasy.NoActionBar"></activity>
+            android:theme="@style/Theme.SweetFantasy.NoActionBar" />
         <activity
             android:name=".ui.activities.SettingsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SweetFantasy.NoActionBar"></activity>
+            android:theme="@style/Theme.SweetFantasy.NoActionBar" />
         <activity
             android:name=".ui.activities.DashboardActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".ui.activities.UserProfileActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SweetFantasy.NoActionBar"></activity>
+            android:theme="@style/Theme.SweetFantasy.NoActionBar" />
         <activity
             android:name=".ui.activities.ForgotPasswordActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SweetFantasy.NoActionBar"></activity>
+            android:theme="@style/Theme.SweetFantasy.NoActionBar" />
         <activity android:name=".ui.activities.BaseActivity" />
         <activity
             android:name=".ui.activities.RegisterActivity"

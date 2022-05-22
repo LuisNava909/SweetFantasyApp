@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gmail.naroluen.sweetfantasy.R
 import com.gmail.naroluen.sweetfantasy.model.Address
 import com.gmail.naroluen.sweetfantasy.ui.activities.AddEditAddressActivity
+import com.gmail.naroluen.sweetfantasy.ui.activities.CheckoutActivity
 import com.gmail.naroluen.sweetfantasy.utils.Constants
 import kotlinx.android.synthetic.main.item_address_layout.view.*
 
@@ -72,7 +73,11 @@ open class AddressListAdapter(
             //Assign the click event to the address item when user is about to select the address.
             if (selectAddress) {
                 holder.itemView.setOnClickListener {
-                    Toast.makeText(context, "Selected address : ${model.address}, ${model.zipCode}", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(context, "Selected address : ${model.address}, ${model.zipCode}", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(context, CheckoutActivity::class.java)
+                    //Pass the selected address through intent.
+                    intent.putExtra(Constants.EXTRA_SELECTED_ADDRESS, model)
+                    context.startActivity(intent)
                 }
             }
 
