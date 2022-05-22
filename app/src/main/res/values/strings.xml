@@ -154,4 +154,6 @@
     <string name="lbl_cash_on_delivery">Efectivo al Recibir</string>
     <string name="btn_lbl_place_order">COMPRAR REGALO</string>
 
+    <string name="no_orders_placed_yet">Aún no ha personalizado un regalo</string>
+
 </resources>

@@ -142,14 +142,25 @@ class CheckoutActivity : BaseActivity() {
         toolbar_checkout_activity.setNavigationOnClickListener { onBackPressed() }
     }
 
-    fun orderPlacedSuccess() {
+    fun allDetailsUpdatedSuccessfully() {
         hideProgressDialog()
-        Toast.makeText(this@CheckoutActivity, "Tu pedido ha sido confirmado", Toast.LENGTH_SHORT)
-            .show()
+        Toast.makeText(this@CheckoutActivity, "Se ha confirmado tu pedido", Toast.LENGTH_SHORT).show()
+
         val intent = Intent(this@CheckoutActivity, DashboardActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
+    }
+
+    fun orderPlacedSuccess() {
+        /*Toast.makeText(this@CheckoutActivity, "Se ha confirmado tu pedido", Toast.LENGTH_SHORT).show()
+
+        val intent = Intent(this@CheckoutActivity, DashboardActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()*/
+
+        FirestoreClass().updateAllDetails(this@CheckoutActivity, mCartItemsList)
     }
 
 }
