@@ -156,4 +156,12 @@
 
     <string name="no_orders_placed_yet">Aún no ha personalizado un regalo</string>
 
+    <string name="title_my_order_details">MI PEDIDO</string>
+    <string name="order_details_lbl">Detalles de Regalo</string>
+    <string name="order_details_lbl_order_id">ID de Pedido</string>
+    <string name="order_details_lbl_order_date">Fecha de Pedido</string>
+    <string name="order_details_lbl_order_status">Estado de Pedido</string>
+    <string name="order_status_pending">Procesando</string>
+    <string name="order_details_lbl_shipping_address">Dirección de Envío</string>
+
 </resources>

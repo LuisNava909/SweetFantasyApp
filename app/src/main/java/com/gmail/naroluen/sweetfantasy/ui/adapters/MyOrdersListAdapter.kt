@@ -1,12 +1,15 @@
 package com.gmail.naroluen.sweetfantasy.ui.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.naroluen.sweetfantasy.R
 import com.gmail.naroluen.sweetfantasy.model.Order
+import com.gmail.naroluen.sweetfantasy.ui.activities.MyOrderDetailsActivity
+import com.gmail.naroluen.sweetfantasy.utils.Constants
 import com.gmail.naroluen.sweetfantasy.utils.GlideLoader
 import kotlinx.android.synthetic.main.item_list_layout.view.*
 
@@ -55,6 +58,12 @@ open class MyOrdersListAdapter(
             holder.itemView.tv_item_price.text = "$${model.total_amount}"
 
             holder.itemView.ib_delete_product.visibility = View.GONE
+
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, MyOrderDetailsActivity::class.java)
+                intent.putExtra(Constants.EXTRA_MY_ORDER_DETAILS, model)
+                context.startActivity(intent)
+            }
         }
     }
 
