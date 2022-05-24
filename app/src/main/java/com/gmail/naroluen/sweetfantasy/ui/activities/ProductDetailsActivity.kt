@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_product_details.*
 class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     private var mProductId: String = ""
     private lateinit var mProductDetails: Product
+    private var mProductOwnerId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +27,13 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         if (intent.hasExtra(Constants.EXTRA_PRODUCT_ID)) {
             mProductId = intent.getStringExtra(Constants.EXTRA_PRODUCT_ID)!!
             //Get the product owner id through intent.
-            var productOwnerId: String = ""
+            //var productOwnerId: String = ""
             if (intent.hasExtra(Constants.EXTRA_PRODUCT_OWNER_ID)) {
-                productOwnerId = intent.getStringExtra(Constants.EXTRA_PRODUCT_OWNER_ID)!!
+                mProductOwnerId = intent.getStringExtra(Constants.EXTRA_PRODUCT_OWNER_ID)!!
             }
 
             // If the product which is added by owner himself should not see the button Add To Cart.
-            if (FirestoreClass().getCurrentUserID() == productOwnerId) {
+            if (FirestoreClass().getCurrentUserID() == mProductOwnerId) {
                 btn_add_to_cart.visibility = View.GONE
                 btn_go_to_cart.visibility = View.GONE
             } else {
@@ -129,6 +130,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
         val addToCart = CartItem(
                 FirestoreClass().getCurrentUserID(),
+                mProductOwnerId,
                 mProductId,
                 mProductDetails.title,
                 mProductDetails.price,

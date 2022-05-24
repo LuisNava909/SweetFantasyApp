@@ -23,6 +23,7 @@ class CheckoutActivity : BaseActivity() {
     private lateinit var mCartItemsList: ArrayList<CartItem>
     private var mSubTotal: Double = 0.0
     private var mTotalAmount: Double = 0.0
+    private lateinit var mOrderDetails: Order
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,18 +113,19 @@ class CheckoutActivity : BaseActivity() {
         showProgressDialog(resources.getString(R.string.please_wait))
         if(mAddressDetails != null){
             //Prepare the order details based on all the required details.
-            val order = Order(
+            mOrderDetails = Order(
                 FirestoreClass().getCurrentUserID(),
                 mCartItemsList,
                 mAddressDetails!!,
                 "Mi regalo ${System.currentTimeMillis()}",
                 mCartItemsList[0].image,
                 mSubTotal.toString(),
-                "100.0", // The Shipping Charge is fixed as $10 for now in our case.
+                "100.0", // The Shipping Charge is fixed as $100 for now in our case.
                 mTotalAmount.toString(),
+                System.currentTimeMillis(),
             )
             //Call the function to place the order in the cloud firestore.
-            FirestoreClass().placeOrder(this@CheckoutActivity, order)
+            FirestoreClass().placeOrder(this@CheckoutActivity, mOrderDetails)
         }
     }
 
@@ -160,7 +162,7 @@ class CheckoutActivity : BaseActivity() {
         startActivity(intent)
         finish()*/
 
-        FirestoreClass().updateAllDetails(this@CheckoutActivity, mCartItemsList)
+        FirestoreClass().updateAllDetails(this@CheckoutActivity, mCartItemsList, mOrderDetails)
     }
 
 }
