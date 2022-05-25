@@ -96,7 +96,7 @@
             android:layout_marginTop="@dimen/settings_name_marginTop"
             android:textColor="@color/colorDarkGrey"
             android:textSize="@dimen/settings_name_textSize"
-            tools:text="Denis Panjuta" />
+            tools:text="Usuario" />
 
         <com.gmail.naroluen.sweetfantasy.utils.MSPTextView
             android:id="@+id/tv_gender"
@@ -118,7 +118,7 @@
             android:layout_marginTop="@dimen/settings_info_marginTop"
             android:textColor="@color/colorSecondaryText"
             android:textSize="@dimen/settings_info_textSize"
-            tools:text="denis.panjuta@gmail.com" />
+            tools:text="email@email.com" />
 
         <com.gmail.naroluen.sweetfantasy.utils.MSPTextView
             android:id="@+id/tv_mobile_number"
@@ -129,7 +129,7 @@
             android:layout_marginTop="@dimen/settings_info_marginTop"
             android:textColor="@color/colorSecondaryText"
             android:textSize="@dimen/settings_info_textSize"
-            tools:text="123456789" />
+            tools:text="1234567890" />
 
         <LinearLayout
             android:id="@+id/ll_address"

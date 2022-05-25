@@ -170,4 +170,6 @@
     <string name="title_sold_products">Ventas</string>
     <string name="no_products_sold_yet">No se han realizado ventas</string>
 
+    <string name="title_sold_product_details">DETALLES DE PEDIDO</string>
+
 </resources>

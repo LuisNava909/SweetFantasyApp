@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SweetFantasy">
         <activity
+            android:name=".ui.activities.SoldProductDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SweetFantasy.NoActionBar" />
+        <activity
             android:name=".ui.activities.MyOrderDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SweetFantasy.NoActionBar" />
